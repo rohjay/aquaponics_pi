@@ -1,12 +1,15 @@
 {
-  "name": "hit-me-up",
+  "name": "aquaponics",
   "version": "0.0.1",
-  "description": "It's my first socket.io app ever. Node.js app ever. I'm new at this. Ugh!",
+  "description": "Express app that serves React frontend and shuttles data through Socket.io",
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
     "moment": "^2.18.1",
     "socket.io": "^2.0.3"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }

@@ -1,18 +1,30 @@
+// @flow
+
 import React from 'react'
 import moment from 'moment'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
 
-// data comes in as an array of ints and must return as [{time: 10:32:01, temp: 78}]
-const dataHelper = (data, title) => {
-  let length = data.length - 1
-  return data.map((value, index) => ({
-      time: moment().subtract(length - index, 'seconds').format('HH:mm:ss'),
-      [title]: value,
-    })
-  )
+type DataPoint = {
+  time: number,
+  data: number,
 }
 
-const Graph = (props) => (
+type Props = {
+  data: Array<DataPoint>,
+  title: string,
+  scale: string,
+  color: string
+}
+
+// data comes in as an array of ints and must return as [{time: 10:32:01, temp: 78}]
+const dataHelper = (dataArray: Array<DataPoint>, title: string) => (
+  dataArray.map(dataPoint => ({
+    time: moment(dataPoint.time).format('HH:mm:ss'),
+    [title]: dataPoint.data,
+  }))
+)
+
+const Graph = (props: Props) => (
   <LineChart width={730} height={250} data={dataHelper(props.data, props.title)}
     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
     <XAxis
@@ -25,6 +37,7 @@ const Graph = (props) => (
       scale='linear'
       dataKey={props.title}
       unit={props.scale}
+      allowDecimals={false}
       domain={['auto','auto']} />
     <CartesianGrid strokeDasharray="3 3" />
     <Tooltip />

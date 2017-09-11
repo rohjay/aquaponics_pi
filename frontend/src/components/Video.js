@@ -1,6 +1,8 @@
+// @flow
+
 import React from 'react'
 
-const Video = (props) => (
+const Video = (props: {title: string, embedId: string}) => (
   <iframe
     title={props.title}
     width='560'

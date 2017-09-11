@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var moment = require('moment');
 
 app.use(express.static('../frontend/build'));
 
@@ -16,6 +17,7 @@ io.on('connection', function(socket){
           socket.emit('action', {
             type:'SET_SOCKET',
             data: {
+              time: moment().valueOf(),
               moisture: Math.floor(Math.random()*100),
               temp: Math.floor(Math.random()*4+76),
               ph: Number((Math.random()*2+5.5).toFixed(1)),

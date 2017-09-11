@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row } from 'react-bootstrap'
@@ -5,7 +7,18 @@ import '../styles/containers/Main.css'
 import Video from '../components/Video'
 import { Graph } from '../components/Graph'
 
-class Main extends Component {
+type DataPoint = {
+  time: number,
+  data: number,
+}
+
+type Props = {
+  moisture: Array<DataPoint>,
+  temp: Array<DataPoint>,
+  ph: Array<DataPoint>,
+}
+
+class Main extends Component<Props> {
   render() {
     return (
       <Grid>

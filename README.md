@@ -20,7 +20,13 @@ Functionality wise, this app could control:
 
 ### Monitoring SLC
 
-We would like to be able to monitor from the front end:
+This app could allow a user to monitor from the front end:
 - Water temperature
 - Water PH
 - Moisture levels of the soil
+- Graph data over time
+- Historicals?
+
+### Other goals
+
+We could also set up a live stream from the raspberry cam to watch the fishies in the tank!

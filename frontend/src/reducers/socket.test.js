@@ -1,7 +1,14 @@
 import socket from './socket'
 
 it('returns an array of the 10 latest results', () => {
-  let arrayStart = [0,1,2,3,4,5,6,7,8,9]
+  let arrayStart = []
+  
+  for (let i = 0; i < 10; i++) {
+    arrayStart.push({
+      time: i,
+      data: i,
+    })
+  }
 
   let state = {
     moisture: arrayStart,
@@ -12,6 +19,7 @@ it('returns an array of the 10 latest results', () => {
   let action = {
     type: 'SET_SOCKET',
     data: {
+      time: 10,
       moisture: 10,
       temp: 10,
       ph: 10,
@@ -20,7 +28,13 @@ it('returns an array of the 10 latest results', () => {
 
   let actualResult = socket(state, action)
   
-  let arrayEnd = [1,2,3,4,5,6,7,8,9,10]
+  let arrayEnd = []
+  for (let i = 1; i <= 10; i++) {
+    arrayEnd.push({
+      time: i,
+      data: i,
+    })
+  }
 
   let expectedResult = {
     moisture: arrayEnd,

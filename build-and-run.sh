@@ -8,5 +8,4 @@ cd ../node
 yarn install
 
 # start express, socket.io, and react frontend
-cd ../node
-node index.js
+yarn start

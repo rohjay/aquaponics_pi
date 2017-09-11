@@ -2,16 +2,22 @@ import { dataHelper } from './Graph'
 
 it('formats socket data correctly for consumption by rechart', () => {
   let title = 'temp'
-  let data = [55,78]
+  let data = [{
+    time: 0,
+    data: 55,
+  },{
+    time: 1000,
+    data: 78,
+  }]
   let actualResult = dataHelper(data, title)
   let expectedResult = [
     {
-      time: actualResult[0].time,
-      temp: data[0]
+      time: '18:00:00',
+      [title]: data[0].data,
     },
     {
-      time: actualResult[1].time,
-      temp: data[1]
+      time: '18:00:01',
+      [title]: data[1].data,
     },
   ]
 

@@ -1,5 +1,6 @@
 # Aquaponics+Raspberry Pi
-## A WP Engine Culture Club Project 2017
+
+A WP Engine Culture Club Project 2017
 
 The noobs group is putting together an aquaponic farm, and using a Raspberry Pi to monitor and automate basic functions of the system.
 
@@ -23,4 +24,3 @@ We would like to be able to monitor from the front end:
 - Water temperature
 - Water PH
 - Moisture levels of the soil
-

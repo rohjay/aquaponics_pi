@@ -4,18 +4,25 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.use(express.static('ui'));
+app.use(express.static('../frontend/build'));
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/../frontend/build/index.html');
 });
 
 io.on('connection', function(socket){
     setInterval(
         function(){
-            io.emit('rando', Math.floor(Math.random()*100));
+          socket.emit('action', {
+            type:'SET_SOCKET',
+            data: {
+              moisture: Math.floor(Math.random()*100),
+              temp: Math.floor(Math.random()*4+76),
+              ph: Number((Math.random()*2+5.5).toFixed(1)),
+            }
+          });
         },
-        500
+        1000
     );
 });
 

@@ -4,6 +4,16 @@ A WP Engine Culture Club Project 2017
 
 The noobs group is putting together an aquaponic farm, and using a Raspberry Pi to monitor and automate basic functions of the system.
 
+## Requirements
+- [Node.js](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/en/)
+
+## How to start
+
+```
+sh build-and-run.sh
+```
+
 ## Software's Role
 
 We are going to build 2 components for this project:

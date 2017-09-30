@@ -16,7 +16,7 @@ var moment = require('moment');
     humidity: Number((Math.random()*2+5.5).toFixed(1)),
   }
 }
-thetime=`date +%s`; curl -H "Content-Type: application/json" -X POST -d "{\"time\":$thetime,\"moisture\":60,\"temp\":76,\"ph\":7}" http://localhost:3000/update
+thetime=`date +%s`; curl -H "Content-Type: application/json" -X POST -d "{\"time\":$thetime,\"moisture\":60,\"temp\":76,\"humidity\":7}" http://localhost:3000/update
 */
 
 app.use(bodyParser.json());
@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
 app.post('/update', (req, res) => {
   console.log(req.body);
+  req.body.time = Math.floor(req.body.time*100);
   io.sockets.emit('action', {
     type:'SET_SOCKET',
     data: req.body,

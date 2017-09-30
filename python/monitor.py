@@ -1,50 +1,46 @@
-#import PCF8591 as ADC
+#!/usr/bin/python
+
 import RPi.GPIO as GPIO
-import time
+import dht11
+import time, requests
 
+print "Initializing GPIO's"
+
+# initialize GPIO
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
+GPIO.cleanup()
 
-# GPIO pins 17, 27, 22
-# Moisture, temp, light
+temp_hum = dht11.DHT11(pin=4)
 
-def init():
-    print "Initing the sensors"
+moisture = 0
+def init_moisture():
+    GPIO.setup(17, GPIO.IN)
+    GPIO.add_event_detect(17, GPIO.BOTH, bouncetime=300)
+    GPIO.add_event_callback(17, callback)
 
-    # Set our GPIO numbering to BCM
-    GPIO.setmode(GPIO.BCM)
-
-    # Init the different sensors
-    init_pin(pin=17, callback="callback", msg="Init moisture sensor on GPIO pin 17")
-    #init_pin(pin=27, callback="blah", msg="Init temp sensor on GPIO pin 27")
-    #init_pin(pin=27, callback="blah", msg="Init light sensor on GPIO pin 22")
-
-def init_pin(pin, callback, msg):
-    print msg
-    GPIO.setup(pin, GPIO.IN)
-    GPIO.add_event_detect(pin, GPIO.BOTH, bouncetime=300)
-    GPIO.add_event_callback(pin, callback)
-
-def sendReport(data):
-    print "Sending data NAO!"
-
-# Still need to put this together...
 def callback(pin):
     if GPIO.input(pin):
-        print "dry"
+        moisture = 0
     else:
-        print "moist"
+        moisture = 1
+
+init_moisture()
+
+monitor_data = {'time':None,'temp':None,'humidity':None,'moisture':None}
+
+while True:
+    result_temp_hum = temp_hum.read()
+
+    if result_temp_hum.is_valid():
+        monitor_data['temp'] = result_temp_hum.temperature
+        monitor_data['humidity'] = result_temp_hum.humidity
+
+    monitor_data['moisture'] = moisture
+    monitor_data['time'] = time.time()
 
 
-if __name__ == '__main__':
-    init()
+    print monitor_data
+    r = requests.post('http://localhost:3000/update', json=monitor_data, headers = {"Content-Type": "application/json"})
 
-    DATA = {
-        moisture: 'dry',
-        temp: 78.4,
-        light: 'blah'
-    }
-
-    while True:
-        # Chill for a quarter second, poll to rebuild data array, post and report.
-        time.sleep(0.25)
-
+    time.sleep(0.25)

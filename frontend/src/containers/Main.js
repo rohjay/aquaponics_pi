@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row } from 'react-bootstrap'
 import '../styles/containers/Main.css'
-import Video from '../components/Video'
+//import Video from '../components/Video'
 import { Graph } from '../components/Graph'
 
 type DataPoint = {
@@ -22,11 +22,6 @@ class Main extends Component<Props> {
   render() {
     return (
       <Grid>
-        <Row>
-          <Video
-            title={'Live Stream'}
-            embedId={'7U7ijVPuZ3Q'} />
-        </Row>
         <Row>
           <Graph
             title={'temp'}

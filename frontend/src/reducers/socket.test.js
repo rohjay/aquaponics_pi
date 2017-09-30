@@ -13,7 +13,7 @@ it('returns an array of the 10 latest results', () => {
   let state = {
     moisture: arrayStart,
     temp: arrayStart,
-    ph: arrayStart,
+    humidity: arrayStart,
   }
 
   let action = {
@@ -22,7 +22,7 @@ it('returns an array of the 10 latest results', () => {
       time: 10,
       moisture: 10,
       temp: 10,
-      ph: 10,
+      humidity: 10,
     },
   }
 
@@ -39,7 +39,7 @@ it('returns an array of the 10 latest results', () => {
   let expectedResult = {
     moisture: arrayEnd,
     temp: arrayEnd,
-    ph: arrayEnd,
+    humidity: arrayEnd,
   }
 
   expect(actualResult).toEqual(expectedResult)

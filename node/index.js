@@ -13,10 +13,10 @@ var moment = require('moment');
     time: moment().valueOf(),
     moisture: Math.floor(Math.random()*100),
     temp: Math.floor(Math.random()*4+76),
-    ph: Number((Math.random()*2+5.5).toFixed(1)),
+    humidity: Number((Math.random()*2+5.5).toFixed(1)),
   }
 }
-curl -H "Content-Type: application/json" -X POST -d '{"type":"SET_SOCKET","data":{"time":101010101,"moisture":60,"temp":76,"ph":7}}' http://localhost:3000/update
+thetime=`date +%s`; curl -H "Content-Type: application/json" -X POST -d "{\"type\":\"SET_SOCKET\",\"data\":{\"time\":$thetime,\"moisture\":60,\"temp\":76,\"ph\":7}}" http://localhost:3000/update
 */
 
 app.use(bodyParser.json());

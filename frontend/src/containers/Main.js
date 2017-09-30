@@ -15,7 +15,7 @@ type DataPoint = {
 type Props = {
   moisture: Array<DataPoint>,
   temp: Array<DataPoint>,
-  ph: Array<DataPoint>,
+  humidity: Array<DataPoint>,
 }
 
 class Main extends Component<Props> {
@@ -36,17 +36,17 @@ class Main extends Component<Props> {
         </Row>
         <Row>
           <Graph
-            title={'moisture'}
-            color={'#0000FF'}
+            title={'humidity'}
+            color={'#00FF00'}
             scale={'%'}
-            data={this.props.moisture} />
+            data={this.props.humidity} />
         </Row>
         <Row>
           <Graph
-            title={'pH'}
-            color={'#00FF00'}
-            scale={'pH'}
-            data={this.props.ph} />
+            title={'moisture'}
+            color={'#0000FF'}
+            scale={''}
+            data={this.props.moisture} />
         </Row>
       </Grid>
     )
@@ -56,7 +56,7 @@ class Main extends Component<Props> {
 const mapStateToProps = (state) => ({
   moisture: state.socket.moisture,
   temp: state.socket.temp,
-  ph: state.socket.ph,
+  humidity: state.socket.humidity,
 })
 
 const MainContainer = connect(

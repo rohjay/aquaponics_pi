@@ -8,7 +8,7 @@ type DataPoint = {
 type State = {
   moisture: Array<DataPoint>,
   temp: Array<DataPoint>,
-  ph: Array<DataPoint>,
+  humidity: Array<DataPoint>,
 }
 
 type Action = {
@@ -17,14 +17,14 @@ type Action = {
     time: number,
     moisture: number,
     temp: number,
-    ph: number,
+    humidity: number,
   },
 }
 
 const defaultState = {
   moisture: [],
   temp: [],
-  ph: [],
+  humidity: [],
 }
 
 const createDataPoint = (time: number, data: number) => ({
@@ -41,11 +41,11 @@ const socket = (state: State = defaultState, action: Action) => {
     case 'SET_SOCKET':
       let moistureDataPoint = createDataPoint(action.data.time, action.data.moisture)
       let tempDataPoint = createDataPoint(action.data.time, action.data.temp)
-      let phDataPoint = createDataPoint(action.data.time, action.data.ph)
+      let humidityDataPoint = createDataPoint(action.data.time, action.data.humidity)
       return Object.assign({}, state, {
         moisture: keepLatest(state.moisture, moistureDataPoint),
         temp: keepLatest(state.temp, tempDataPoint),
-        ph: keepLatest(state.ph, phDataPoint),
+        humidity: keepLatest(state.humidity, humidityDataPoint),
       })
     default:
       return state

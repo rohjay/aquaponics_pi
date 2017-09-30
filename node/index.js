@@ -13,10 +13,10 @@ var moment = require('moment');
     time: moment().valueOf(),
     moisture: Math.floor(Math.random()*100),
     temp: Math.floor(Math.random()*4+76),
-    ph: Number((Math.random()*2+5.5).toFixed(1)),
+    humidity: Number((Math.random()*2+5.5).toFixed(1)),
   }
 }
-curl -H "Content-Type: application/json" -X POST -d '{"type":"SET_SOCKET","data":{"time":101010101,"moisture":60,"temp":76,"ph":7}}' http://localhost:3000/update
+thetime=`date +%s`; curl -H "Content-Type: application/json" -X POST -d "{\"time\":$thetime,\"moisture\":60,\"temp\":76,\"ph\":7}" http://localhost:3000/update
 */
 
 app.use(bodyParser.json());
@@ -28,7 +28,10 @@ app.get('/', (req, res) => {
 
 app.post('/update', (req, res) => {
   console.log(req.body);
-  io.sockets.emit('action', req.body);
+  io.sockets.emit('action', {
+    type:'SET_SOCKET',
+    data: req.body,
+  });
   res.status(200).end();
 });
 

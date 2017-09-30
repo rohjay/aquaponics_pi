@@ -4,8 +4,9 @@
   "description": "It's my first socket.io app ever. Node.js app ever. I'm new at this. Ugh!",
   "dependencies": {
     "axios": "^0.16.2",
-    "body-parser": "^1.18.0",
+    "body-parser": "^1.18.2",
     "express": "^4.15.4",
+    "moment": "^2.18.1",
     "socket.io": "^2.0.3"
   }
 }

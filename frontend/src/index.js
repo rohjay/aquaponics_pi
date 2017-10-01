@@ -8,7 +8,6 @@ import store from './store'
 
 import './styles/index.css'
 import MainContainer from './containers/Main'
-import registerServiceWorker from './registerServiceWorker'
 
 render(
   <Provider store={store}>

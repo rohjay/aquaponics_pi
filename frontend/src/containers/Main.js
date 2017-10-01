@@ -2,10 +2,11 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row } from 'react-bootstrap'
+import { Grid, Row, Jumbotron } from 'react-bootstrap'
 import '../styles/containers/Main.css'
 //import Video from '../components/Video'
 import { Graph } from '../components/Graph'
+import { SoilMoisture } from '../components/SoilMoisture'
 
 type DataPoint = {
   time: number,
@@ -23,6 +24,15 @@ class Main extends Component<Props> {
     return (
       <Grid>
         <Row>
+        <Jumbotron>
+          <h1>Aquaponics Pi</h1>
+        </Jumbotron>
+        </Row>
+        <Row>
+          <SoilMoisture
+            data={this.props.moisture} />
+        </Row>
+        <Row>
           <Graph
             title={'temp'}
             color={'#ff0000'}
@@ -35,13 +45,6 @@ class Main extends Component<Props> {
             color={'#00FF00'}
             scale={'%'}
             data={this.props.humidity} />
-        </Row>
-        <Row>
-          <Graph
-            title={'moisture'}
-            color={'#0000FF'}
-            scale={''}
-            data={this.props.moisture} />
         </Row>
       </Grid>
     )

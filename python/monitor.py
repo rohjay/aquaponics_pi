@@ -31,12 +31,17 @@ monitor_data = {'time':None,'temp':None,'humidity':None,'moisture':None}
 
 while True:
     result_temp_hum = temp_hum.read()
+    monitor_data['moisture'] = 0
 
     if result_temp_hum.is_valid():
         monitor_data['temp'] = result_temp_hum.temperature
         monitor_data['humidity'] = result_temp_hum.humidity
+    
+    if GPIO.input(17):
+        monitor_data['moisture'] = 0
+    else:
+        monitor_data['moisture'] = 1
 
-    monitor_data['moisture'] = moisture
     monitor_data['time'] = time.time()
 
 

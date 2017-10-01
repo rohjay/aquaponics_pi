@@ -34,6 +34,7 @@ const Graph = (props: Props) => (
       domain={['auto','auto']} />
     <YAxis
       type='number'
+      tick='true'
       scale='linear'
       dataKey={props.title}
       unit={props.scale}

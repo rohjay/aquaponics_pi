@@ -34,7 +34,7 @@ while True:
     monitor_data['moisture'] = 0
 
     if result_temp_hum.is_valid():
-        monitor_data['temp'] = result_temp_hum.temperature
+        monitor_data['temp'] = result_temp_hum.temperature * 9 / 5 + 32
         monitor_data['humidity'] = result_temp_hum.humidity
     
     if GPIO.input(17):

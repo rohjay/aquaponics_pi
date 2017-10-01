@@ -48,4 +48,4 @@ while True:
     print monitor_data
     r = requests.post('http://localhost:3000/update', json=monitor_data, headers = {"Content-Type": "application/json"})
 
-    time.sleep(0.25)
+    time.sleep(2)

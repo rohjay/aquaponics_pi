@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.post('/update', (req, res) => {
   console.log(req.body);
-  req.body.time = Math.floor(req.body.time*100);
+  req.body.time = Math.floor(req.body.time*1000);
   io.sockets.emit('action', {
     type:'SET_SOCKET',
     data: req.body,

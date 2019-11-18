@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Express app that serves React frontend and shuttles data through Socket.io",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
     "moment": "^2.18.1",

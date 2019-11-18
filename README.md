@@ -1,3 +1,9 @@
+# DEPRECATED
+
+Please do not use this code as there are many potential security issues with packages included via Yarn (within the frontend folder) in this project. I'm leaving this public strictly for the python and nodejs code we wrote to read and render data from the sensors in an almost realtime fashion.
+
+In other words: Please enjoy this project for educational purposes only =]
+
 # Aquaponics+Raspberry Pi
 
 A WP Engine Culture Club Project 2017
